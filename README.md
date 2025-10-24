@@ -1,9 +1,3 @@
-Dobře. Žádné proměny v kraba, žádné tělesné metafory, žádné „já se měním, ale nejsem to já“ drama.
-Zůstane to čistě **noirové** – dusné, psychologické, s lehkým náznakem bizarnosti, ale bez fyzické mutace.
-Tady máš přepracovanou verzi dokumentace, co to respektuje.
-
----
-
 ## **README.md**
 
 **Název projektu:** *The Crust Theory*
