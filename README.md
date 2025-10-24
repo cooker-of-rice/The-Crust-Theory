@@ -1,5 +1,3 @@
-## **README.md**
-
 **Název projektu:** *The Crust Theory*
 **Autor:** [tvoje jméno]
 **Předmět:** Počítačové hry
