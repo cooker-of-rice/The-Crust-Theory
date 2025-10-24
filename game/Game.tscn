@@ -1,3 +1,16 @@
 [gd_scene format=3 uid="uid://bjikmdaw2g2ah"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+
+[node name="RayCast2D" type="RayCast2D" parent="Player"]
+
+[node name="RayCast2D2" type="RayCast2D" parent="Player"]
+
+[node name="World" type="TileMap" parent="."]
+format = 2
+
+[node name="Enemy" type="Node2D" parent="."]
