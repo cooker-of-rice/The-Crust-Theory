@@ -1,7 +1,6 @@
 **Název projektu:** *The Crust Theory*
-**Autor:** [tvoje jméno]
+**Autor:** Karel M. Bican a Martin Brož
 **Předmět:** Počítačové hry
-**Datum:** [aktuální datum]
 
 ### **Popis projektu**
 
