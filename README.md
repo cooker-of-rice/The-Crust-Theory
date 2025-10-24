@@ -23,5 +23,3 @@ Vytvořit hratelný prototyp, který prezentuje:
 * **Grafika:** 2D stylizace s nízkým kontrastem, pixel art
 * **Zvuk:** ambientní ruchy, industriální podkres
 
-Takhle to můžeš bez problémů odevzdat.
-Je to čisté, srozumitelné, realisticky proveditelné — a zároveň má to dost osobnosti, aby to nevypadalo jako školní klon Hollow Knighta.
