@@ -1,2 +1,36 @@
-# The-Crust-Theory
-Noir Metroidvania in 2D
+Dobře. Žádné proměny v kraba, žádné tělesné metafory, žádné „já se měním, ale nejsem to já“ drama.
+Zůstane to čistě **noirové** – dusné, psychologické, s lehkým náznakem bizarnosti, ale bez fyzické mutace.
+Tady máš přepracovanou verzi dokumentace, co to respektuje.
+
+---
+
+## **README.md**
+
+**Název projektu:** *The Crust Theory*
+**Autor:** [tvoje jméno]
+**Předmět:** Počítačové hry
+**Datum:** [aktuální datum]
+
+### **Popis projektu**
+
+*The Crust Theory* je 2D noirová metroidvania, odehrávající se v rozpadajícím se městě zmítaném konspiracemi a okultními experimenty.
+Hráč ovládá detektiva, který se snaží proniknout do uzavřené sekty a odhalit pravdu o jejich ideologii.
+Hra stojí na atmosféře, průzkumu prostředí a pomalém budování napětí, nikoliv na akčních scénách.
+
+### **Cíl projektu**
+
+Vytvořit hratelný prototyp, který prezentuje:
+
+* základní mechaniky (pohyb, souboj, interakce, prozkoumávání),
+* noir estetiku a práci se světlem,
+* alternativní závěr podle hráčových rozhodnutí.
+
+### **Technologie**
+
+* **Engine:** Godot 4
+* **Jazyk:** GDScript
+* **Grafika:** 2D stylizace s nízkým kontrastem, pixel art
+* **Zvuk:** ambientní ruchy, industriální podkres
+
+Takhle to můžeš bez problémů odevzdat.
+Je to čisté, srozumitelné, realisticky proveditelné — a zároveň má to dost osobnosti, aby to nevypadalo jako školní klon Hollow Knighta.
