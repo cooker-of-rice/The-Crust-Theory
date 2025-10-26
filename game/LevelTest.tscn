@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c8tymq1srdkqh"]
+
+[node name="LevelTest" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+
+[node name="FloorCheck" type="RayCast2D" parent="Player"]
+
+[node name="WallCheckLeft" type="RayCast2D" parent="Player"]
+
+[node name="WallCheckRight" type="RayCast2D" parent="Player"]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Ground" type="TileMap" parent="."]
+format = 2
