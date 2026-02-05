@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://bft522h4f2ajo"]
+
+[ext_resource type="Texture2D" uid="uid://dkrsebyapeheq" path="res://icon.svg" id="1_c6gwx"]
+[ext_resource type="PackedScene" uid="uid://cyllnhdsg04ft" path="res://Background_City.tscn" id="1_eu7l1"]
+[ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_2dftf"]
+[ext_resource type="PackedScene" uid="uid://dovvnmtssnvcl" path="res://Evidence.tscn" id="3_bcbcq"]
+[ext_resource type="PackedScene" uid="uid://boo0x1ugwr0pt" path="res://UI.tscn" id="4_js7pq"]
+[ext_resource type="PackedScene" uid="uid://cq731bave263a" path="res://Enemy.tscn" id="6_p1v5b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dftf"]
+size = Vector2(2025, 73.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcbcq"]
+size = Vector2(79, 652)
+
+[node name="World" type="Node2D"]
+
+[node name="Background_City" parent="." instance=ExtResource("1_eu7l1")]
+z_index = -115
+position = Vector2(-12, 38)
+scale = Vector2(2, 2)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(-98, -314)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_2dftf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+scale = Vector2(18.017033, 0.55468726)
+texture = ExtResource("1_c6gwx")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-1215, -767)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+scale = Vector2(0.59570247, 5.3278117)
+texture = ExtResource("1_c6gwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_bcbcq")
+
+[node name="Player" parent="." instance=ExtResource("2_2dftf")]
+position = Vector2(-331, -454)
+
+[node name="Evidence" parent="." instance=ExtResource("3_bcbcq")]
+position = Vector2(-518, -463)
+
+[node name="UI" parent="." instance=ExtResource("4_js7pq")]
+
+[node name="Enemy" parent="." instance=ExtResource("6_p1v5b")]
+position = Vector2(223, -536)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq731bave263a"]
+
+[ext_resource type="Script" uid="uid://dxp4lhjxfc0fe" path="res://enemy.gd" id="1_s7bn3"]
+[ext_resource type="Texture2D" uid="uid://dkrsebyapeheq" path="res://icon.svg" id="1_tt7e2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7bn3"]
+
+[node name="Enemy" type="CharacterBody2D"]
+safe_margin = 2.0
+script = ExtResource("1_s7bn3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_s7bn3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_tt7e2")
+
+[node name="LedgeCheck" type="RayCast2D" parent="."]
+position = Vector2(15, 0)
+target_position = Vector2(0, 20)

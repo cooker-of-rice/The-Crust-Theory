@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfgm60dqtcp60"
-path="res://.godot/imported/detektiv-removebg-preview.png-12e42df9a460ffde7e6f5a4947df3061.ctex"
+uid="uid://bovjd3r6uc313"
+path="res://.godot/imported/Mid.png-460624f3b1df2e2a5f99d50f9af5f07a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://detektiv-removebg-preview.png"
-dest_files=["res://.godot/imported/detektiv-removebg-preview.png-12e42df9a460ffde7e6f5a4947df3061.ctex"]
+source_file="res://Mid.png"
+dest_files=["res://.godot/imported/Mid.png-460624f3b1df2e2a5f99d50f9af5f07a.ctex"]
 
 [params]
 
