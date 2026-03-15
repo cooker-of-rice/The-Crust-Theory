@@ -20,5 +20,4 @@ Vytvořit hratelný prototyp, který prezentuje:
 * **Engine:** Godot 4
 * **Jazyk:** GDScript
 * **Grafika:** 2D stylizace s nízkým kontrastem, pixel art
-* **Zvuk:** ambientní ruchy, industriální podkres
 
