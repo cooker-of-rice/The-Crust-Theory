@@ -14,7 +14,6 @@ Vytvořit hratelný prototyp, který prezentuje:
 
 * základní mechaniky (pohyb, souboj, interakce, prozkoumávání),
 * noir estetiku a práci se světlem,
-* alternativní závěr podle hráčových rozhodnutí.
 
 ### **Technologie**
 
