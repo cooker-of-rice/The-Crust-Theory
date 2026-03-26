@@ -14,12 +14,10 @@ Vytvořit hratelný prototyp, který prezentuje:
 
 * základní mechaniky (pohyb, souboj, interakce, prozkoumávání),
 * noir estetiku a práci se světlem,
-* alternativní závěr podle hráčových rozhodnutí.
 
 ### **Technologie**
 
 * **Engine:** Godot 4
 * **Jazyk:** GDScript
 * **Grafika:** 2D stylizace s nízkým kontrastem, pixel art
-* **Zvuk:** ambientní ruchy, industriální podkres
 
