@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyllnhdsg04ft"]
+
+[ext_resource type="Texture2D" uid="uid://bucj0bhpao884" path="res://background.png" id="1_cihec"]
+[ext_resource type="Texture2D" uid="uid://bf6k3t8u60sm6" path="res://foreground.png" id="2_ks0b6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ks0b6"]
+size = Vector2(305.25, 199)
+
+[node name="Background_City" type="Node2D"]
+
+[node name="sky" type="Parallax2D" parent="."]
+scale = Vector2(1.0176188, 0.9884437)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-1361.6091, -113)
+repeat_size = Vector2(1340, 0)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="sky"]
+texture = ExtResource("1_cihec")
+
+[node name="foreground" type="StaticBody2D" parent="."]
+position = Vector2(-1, 170)
+scale = Vector2(8, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="foreground"]
+scale = Vector2(0.17499954, 1)
+texture = ExtResource("2_ks0b6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreground"]
+position = Vector2(-47.125, 226.5)
+shape = SubResource("RectangleShape2D_ks0b6")
+
+[node name="limit1" type="StaticBody2D" parent="."]
+position = Vector2(-9, 340)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="limit1"]
+position = Vector2(-8.625, -146)
+scale = Vector2(0.01, 1)
+shape = SubResource("RectangleShape2D_ks0b6")
+
+[node name="limit2" type="StaticBody2D" parent="."]
+position = Vector2(1108, 347)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="limit2"]
+position = Vector2(-8.625, -146)
+scale = Vector2(0.01, 1)
+shape = SubResource("RectangleShape2D_ks0b6")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://boo0x1ugwr0pt"]
+
+[ext_resource type="Script" uid="uid://c4ol7831d5g4s" path="res://ui.gd" id="1_b3bc3"]
+
+[node name="UI" type="CanvasLayer" groups=["UI"]]
+script = ExtResource("1_b3bc3")
+
+[node name="DialogBox" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="DialogBox"]
+layout_mode = 2
+text = "Zajímavé... ale co to znamená?"
+horizontal_alignment = 1
+autowrap_mode = 3
