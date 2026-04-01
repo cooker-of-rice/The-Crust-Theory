@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bft522h4f2ajo"]
+
+[ext_resource type="PackedScene" uid="uid://cyllnhdsg04ft" path="res://city_base.tscn" id="1_wglf0"]
+[ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_4as0u"]
+[ext_resource type="PackedScene" uid="uid://dovvnmtssnvcl" path="res://Interacteble.tscn" id="3_ky23g"]
+[ext_resource type="PackedScene" uid="uid://boo0x1ugwr0pt" path="res://UI.tscn" id="4_ciawh"]
+[ext_resource type="PackedScene" uid="uid://cq731bave263a" path="res://Enemy.tscn" id="5_4as0u"]
+
+[node name="alpha world" type="Node2D"]
+
+[node name="Background_City" parent="." instance=ExtResource("1_wglf0")]
+z_index = -115
+scale = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_4as0u")]
+position = Vector2(862, 474)
+
+[node name="Evidence" parent="." instance=ExtResource("3_ky23g")]
+position = Vector2(-552, 504)
+
+[node name="UI" parent="." instance=ExtResource("4_ciawh")]
+
+[node name="Enemy" parent="." instance=ExtResource("5_4as0u")]
+position = Vector2(-18, 323)

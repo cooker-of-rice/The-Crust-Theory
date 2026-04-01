@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bovjd3r6uc313"
-path="res://.godot/imported/Mid.png-460624f3b1df2e2a5f99d50f9af5f07a.ctex"
+uid="uid://vmbfobdrffoa"
+path="res://.godot/imported/detective.png-1970df75e18723ae6d30e8ac9912a4d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mid.png"
-dest_files=["res://.godot/imported/Mid.png-460624f3b1df2e2a5f99d50f9af5f07a.ctex"]
+source_file="res://detective.png"
+dest_files=["res://.godot/imported/detective.png-1970df75e18723ae6d30e8ac9912a4d9.ctex"]
 
 [params]
 

@@ -16,51 +16,66 @@ extends CharacterBody2D
 @export var wall_slide_speed: float = 100.0
 @export var wall_gravity_multiplier: float = 0.3
 
-# --- ODRAZY NA UZLY ---
-# Očekáváme, že kamera je přímým potomkem hráče a jmenuje se "Camera2D"
-@onready var camera: Camera2D = $Camera2D
+@export_group("Combat")
+# Zde v editoru vložíme scénu našeho projektilu
+@export var projectile_scene: PackedScene 
 
-# --- STAVOVÝ AUTOMAT ---
+# --- ODRAZY NA UZLY ---
+@onready var camera: Camera2D = $Camera2D
+@onready var sprite: Sprite2D = $Sprite2D # Potřebujeme pro otáčení grafiky
+
+# --- STAVOVÝ AUTOMAT A LOGIKA ---
 enum State { IDLE, RUN, AIR, WALL_SLIDE }
 var current_state: State = State.IDLE
 
-# Proměnné pro logiku
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-var was_on_floor: bool = false # Pamatuje si, zda jsme byli na zemi v minulém snímku
+var was_on_floor: bool = false
+var facing_direction: float = 1.0 # 1 = doprava, -1 = doleva (důležité pro střelbu)
 
 # --- HLAVNÍ LOOP ---
 func _physics_process(delta: float) -> void:
-	# 1. Zpracování inputu
 	var direction: float = Input.get_axis("move_left", "move_right")
 	
-	# 2. Aplikace gravitace
+	# OTÁČENÍ POSTAVY (Flipping)
+	if direction != 0:
+		facing_direction = sign(direction)
+		# Pokud jdeme doleva (-1), zapneme flip_h. Jinak vypneme.
+		sprite.flip_h = (facing_direction == -1)
+	
 	apply_gravity(delta)
-	
-	# 3. Wall Slide logika
 	handle_wall_slide(delta, direction)
-	
-	# 4. Pohyb a skok
 	handle_movement(delta, direction)
 	handle_jump()
+	handle_combat() # Zpracování střelby
 	
-	# 5. Aplikace fyziky (pohyb samotný)
 	move_and_slide()
 	
-	# 6. EFEKT DOPADU (Shake)
-	# Pokud jsme teď na zemi, ale předtím jsme nebyli -> právě jsme dopadli
+	# EFEKT DOPADU
 	if is_on_floor() and not was_on_floor:
-		# Zavoláme otřes kamery (pokud kamera existuje)
 		if camera and camera.has_method("add_trauma"):
-			# Hodnota 0.25 je síla otřesu (0.0 až 1.0)
-			camera.add_trauma(0.25)
+			var impact_speed = get_real_velocity().y
+			if impact_speed > 100.0:
+				camera.add_trauma(0.25)
 	
-	# Uložíme stav pro příští snímek
 	was_on_floor = is_on_floor()
-	
-	# 7. Určení stavu pro animace
 	update_state()
 
 # --- LOGIKA ---
+
+func handle_combat() -> void:
+	# Pokud zmáčkneme střelbu a máme nahranou scénu projektilu
+	if Input.is_action_just_pressed("shoot") and projectile_scene:
+		var proj = projectile_scene.instantiate()
+		# Přidáme projektil do aktuálního světa (aby necestoval s hráčem, když hráč uhne)
+		get_tree().current_scene.add_child(proj)
+		
+		# Nastavíme startovní pozici projektilu na střed hráče
+		proj.global_position = global_position
+		# Můžeme projektil trochu posunout dopředu, aby se nespawnoval v břiše
+		proj.global_position.x += facing_direction * 20.0
+		
+		# Řekneme projektilu, kam má letět
+		proj.direction = Vector2(facing_direction, 0)
 
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://e2vpfm18cnte"]
+
+[ext_resource type="Script" uid="uid://stv2tjmsyddp" path="res://projectile.gd" id="1_a85iw"]
+[ext_resource type="Texture2D" uid="uid://dkrsebyapeheq" path="res://icon.svg" id="2_qxf0c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_akgne"]
+
+[sub_resource type="Curve" id="Curve_a85iw"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qxf0c"]
+curve = SubResource("Curve_a85iw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a85iw"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 44.14
+angle_curve = SubResource("CurveTexture_qxf0c")
+gravity = Vector3(0, 98, 0)
+color = Color(0.003369145, 0.003369145, 0.003369144, 1)
+hue_variation_min = -0.13000003
+hue_variation_max = -0.13000003
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_a85iw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_akgne")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.11999971, -0.079999685)
+texture = ExtResource("2_qxf0c")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+amount = 200
+lifetime = 0.26
+process_material = SubResource("ParticleProcessMaterial_a85iw")

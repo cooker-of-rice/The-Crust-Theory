@@ -9,7 +9,6 @@ size = Vector2(305.25, 199)
 [node name="Background_City" type="Node2D"]
 
 [node name="sky" type="Parallax2D" parent="."]
-scale = Vector2(1.0176188, 0.9884437)
 scroll_scale = Vector2(0, 0)
 scroll_offset = Vector2(-1361.6091, -113)
 repeat_size = Vector2(1340, 0)
