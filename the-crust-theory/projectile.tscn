@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://e2vpfm18cnte"]
+[gd_scene load_steps=9 format=3 uid="uid://e2vpfm18cnte"]
 
 [ext_resource type="Script" uid="uid://stv2tjmsyddp" path="res://projectile.gd" id="1_a85iw"]
 [ext_resource type="Texture2D" uid="uid://dkrsebyapeheq" path="res://icon.svg" id="2_qxf0c"]
@@ -13,17 +13,28 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_qxf0c"]
 curve = SubResource("Curve_a85iw")
 
+[sub_resource type="Gradient" id="Gradient_qxf0c"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dgwo2"]
+gradient = SubResource("Gradient_qxf0c")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a85iw"]
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 44.14
 angle_curve = SubResource("CurveTexture_qxf0c")
 gravity = Vector3(0, 98, 0)
-color = Color(0.003369145, 0.003369145, 0.003369144, 1)
+color = Color(1, 1, 0.08627451, 1)
+color_ramp = SubResource("GradientTexture1D_dgwo2")
 hue_variation_min = -0.13000003
 hue_variation_max = -0.13000003
+turbulence_enabled = true
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
 
 [node name="Projectile" type="Area2D"]
+collision_mask = 5
 script = ExtResource("1_a85iw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

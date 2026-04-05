@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://oq8fkwo7ebky"]
+
+[ext_resource type="Script" uid="uid://bg85otf3f1yu5" path="res://death_screen.gd" id="1_if853"]
+[ext_resource type="FontFile" uid="uid://cxcvgtp54ubpt" path="res://Pixeled.ttf" id="2_ex68u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6bi5g"]
+font = ExtResource("2_ex68u")
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+tooltip_auto_translate_mode = 1
+script = ExtResource("1_if853")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = -397.33347
+offset_top = -223.0
+offset_right = -357.33347
+offset_bottom = -183.0
+scale = Vector2(19.64, 11.68)
+color = Color(0.072842635, 0.072842635, 0.072842635, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -138.66666
+offset_top = -96.00002
+offset_right = 155.33334
+offset_bottom = -50.000023
+text = "DETEKTIV MILLER PADL"
+label_settings = SubResource("LabelSettings_6bi5g")
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -89.00004
+offset_top = 30.999985
+offset_right = 79.99996
+offset_bottom = 61.999985
+text = "ZPET DO KANCELARE"

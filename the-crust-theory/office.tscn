@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://71cxxxbwep7l"]
+
+[ext_resource type="Texture2D" uid="uid://dcx7v3vt8npy7" path="res://office.jpg" id="1_g3mwp"]
+[ext_resource type="Script" uid="uid://b8ljchw84dhbg" path="res://office.gd" id="1_lcnwv"]
+[ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_ei2s5"]
+[ext_resource type="AudioStream" uid="uid://dlh0qtsj3osuk" path="res://wood_walk.mp3" id="3_43ocd"]
+[ext_resource type="PackedScene" uid="uid://dovvnmtssnvcl" path="res://Interacteble.tscn" id="3_u8nhc"]
+[ext_resource type="FontFile" uid="uid://cxcvgtp54ubpt" path="res://Pixeled.ttf" id="6_4i814"]
+[ext_resource type="AudioStream" uid="uid://d1ajqkmb2itur" path="res://slam.mp3" id="6_lcnwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yeiw"]
+size = Vector2(2264.3408, 77.110306)
+
+[sub_resource type="FontVariation" id="FontVariation_lcnwv"]
+base_font = ExtResource("6_4i814")
+
+[node name="office" type="Node2D"]
+script = ExtResource("1_lcnwv")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(6, -24)
+texture = ExtResource("1_g3mwp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(17.999985, 194.99998)
+scale = Vector2(0.6509509, 1.7152563)
+shape = SubResource("RectangleShape2D_8yeiw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-381.99997, -77.00001)
+rotation = 3.1415927
+scale = Vector2(0.046499133, -5.3654084)
+shape = SubResource("RectangleShape2D_8yeiw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(699, -67.00001)
+scale = Vector2(0.27583203, 4.1695366)
+shape = SubResource("RectangleShape2D_8yeiw")
+
+[node name="Player" parent="." instance=ExtResource("2_ei2s5")]
+position = Vector2(52, -12)
+
+[node name="Camera2D" parent="Player" index="2"]
+zoom = Vector2(4, 4)
+limit_left = -330
+limit_top = -190
+limit_right = 385
+limit_bottom = 131
+
+[node name="DeathScreen" parent="Player/Camera2D" index="0"]
+visible = false
+
+[node name="FootstepPlayer" parent="Player" index="4"]
+stream = ExtResource("3_43ocd")
+
+[node name="Evidence" parent="." instance=ExtResource("3_u8nhc")]
+position = Vector2(-283, 69)
+interact_type = 1
+next_scene_path = "uid://bft522h4f2ajo"
+
+[node name="DialogUI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="DialogUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -648.0
+offset_right = -536.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="DialogUI/Panel"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 100.0
+theme_override_fonts/font = SubResource("FontVariation_lcnwv")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AmbientSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lcnwv")
+
+[node name="DialogTimer" type="Timer" parent="."]
+
+[editable path="Player"]
+[editable path="Evidence"]

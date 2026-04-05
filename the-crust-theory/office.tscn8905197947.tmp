@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://71cxxxbwep7l"]
+
+[ext_resource type="Texture2D" uid="uid://dcx7v3vt8npy7" path="res://office.jpg" id="1_g3mwp"]
+[ext_resource type="Script" uid="uid://b8ljchw84dhbg" path="res://office.gd" id="1_lcnwv"]
+[ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_ei2s5"]
+[ext_resource type="AudioStream" uid="uid://dlh0qtsj3osuk" path="res://wood_walk.mp3" id="3_43ocd"]
+[ext_resource type="PackedScene" uid="uid://dovvnmtssnvcl" path="res://Interacteble.tscn" id="3_u8nhc"]
+[ext_resource type="PackedScene" uid="uid://cai1p8nev55fd" path="res://DialogueUI.tscn" id="5_hsito"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yeiw"]
+size = Vector2(2264.3408, 77.110306)
+
+[node name="office" type="Node2D"]
+script = ExtResource("1_lcnwv")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(6, -24)
+texture = ExtResource("1_g3mwp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(17.999985, 194.99998)
+scale = Vector2(0.6509509, 1.7152563)
+shape = SubResource("RectangleShape2D_8yeiw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-381.99997, -77.00001)
+rotation = 3.1415927
+scale = Vector2(0.046499133, -5.3654084)
+shape = SubResource("RectangleShape2D_8yeiw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(699, -67.00001)
+scale = Vector2(0.27583203, 4.1695366)
+shape = SubResource("RectangleShape2D_8yeiw")
+
+[node name="Player" parent="." instance=ExtResource("2_ei2s5")]
+position = Vector2(52, -12)
+
+[node name="Camera2D" parent="Player" index="2"]
+zoom = Vector2(4, 4)
+limit_left = -330
+limit_top = -190
+limit_right = 385
+limit_bottom = 131
+
+[node name="FootstepPlayer" parent="Player" index="4"]
+stream = ExtResource("3_43ocd")
+
+[node name="Evidence" parent="." instance=ExtResource("3_u8nhc")]
+position = Vector2(-283, 69)
+interact_type = 1
+next_scene_path = "uid://bft522h4f2ajo"
+
+[node name="DialogueUI" parent="." instance=ExtResource("5_hsito")]
+
+[editable path="Player"]
+[editable path="Evidence"]

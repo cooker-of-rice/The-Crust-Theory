@@ -1,25 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5mlguvicthaa"]
+[gd_scene load_steps=14 format=3 uid="uid://c5mlguvicthaa"]
 
 [ext_resource type="Script" uid="uid://cvklgrnh8vi4c" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://e2vpfm18cnte" path="res://projectile.tscn" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://vmbfobdrffoa" path="res://detective.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://b4e0n5skc5ort" path="res://gun.png" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c2ykiog7ob4q8" path="res://camera_2d.gd" id="3_sweqy"]
+[ext_resource type="AudioStream" uid="uid://wckcv5csyln" path="res://asfalt_walk.mp3" id="6_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://cpkvyfdjc3545" path="res://click.mp3" id="7_1jxqw"]
+[ext_resource type="AudioStream" uid="uid://btnq52p5rut24" path="res://jump.mp3" id="8_n7ghd"]
+[ext_resource type="AudioStream" uid="uid://cvoqj6ifqak6q" path="res://landing.mp3" id="9_nvl01"]
+[ext_resource type="AudioStream" uid="uid://bk5wve8kl5anw" path="res://wall _slide.mp3" id="10_ivps1"]
+[ext_resource type="PackedScene" uid="uid://oq8fkwo7ebky" path="res://DeathScreen.tscn" id="11_nvl01"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hs0m"]
-radius = 39.0
-height = 120.0
+radius = 21.0
+height = 106.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hqtel")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_i3pqv")
 projectile_scene = ExtResource("2_hqtel")
+shoot_sound = ExtResource("7_1jxqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
 shape = SubResource("CapsuleShape2D_2hs0m")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -4)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_i3pqv")
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -28,3 +59,35 @@ limit_right = 923
 limit_bottom = 710
 position_smoothing_enabled = true
 script = ExtResource("3_sweqy")
+
+[node name="DeathScreen" parent="Camera2D" instance=ExtResource("11_nvl01")]
+process_mode = 3
+z_index = 14
+offset_left = 4.9999695
+offset_top = -128.0
+offset_right = 4.9999695
+offset_bottom = -128.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthLabel" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2hs0m")
+volume_db = 10.798
+
+[node name="ShootPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1jxqw")
+volume_db = 2.59
+
+[node name="JumpPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_n7ghd")
+volume_db = 1.137
+
+[node name="LandingPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_nvl01")
+
+[node name="WallSlidePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ivps1")

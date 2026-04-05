@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7dv7o7dk3ui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ydn"]
+
+[node name="lantern_limit" type="StaticBody2D"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g5ydn")

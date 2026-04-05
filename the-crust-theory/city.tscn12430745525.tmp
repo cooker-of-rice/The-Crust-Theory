@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://bft522h4f2ajo"]
+
+[ext_resource type="PackedScene" uid="uid://cyllnhdsg04ft" path="res://city_base.tscn" id="1_wglf0"]
+[ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_4as0u"]
+[ext_resource type="PackedScene" uid="uid://dovvnmtssnvcl" path="res://Interacteble.tscn" id="3_ky23g"]
+[ext_resource type="PackedScene" uid="uid://6h5eb7bv5hb8" path="res://enemy.tscn" id="4_wglf0"]
+[ext_resource type="AudioStream" uid="uid://cafu0fq8lfwn4" path="res://brass_frontline.mp3" id="5_4as0u"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wglf0"]
+
+[node name="alpha world" type="Node2D"]
+
+[node name="Background_City" parent="." instance=ExtResource("1_wglf0")]
+z_index = -115
+scale = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_4as0u")]
+position = Vector2(845, 466)
+speed = null
+acceleration = null
+friction = null
+jump_velocity = null
+gravity_multiplier = null
+air_resistance = null
+wall_slide_speed = null
+wall_gravity_multiplier = null
+fire_rate = null
+
+[node name="Evidence" parent="." instance=ExtResource("3_ky23g")]
+position = Vector2(-623, 523)
+interact_type = 1
+next_scene_path = "uid://cfm4vmhrghjbk"
+
+[node name="Sprite2D" parent="Evidence" index="1"]
+texture = SubResource("CompressedTexture2D_wglf0")
+
+[node name="enemy" parent="." instance=ExtResource("4_wglf0")]
+position = Vector2(-380, 472)
+
+[node name="enemy2" parent="." instance=ExtResource("4_wglf0")]
+position = Vector2(-292, 527)
+
+[node name="enemy3" parent="." instance=ExtResource("4_wglf0")]
+position = Vector2(-380, 472)
+
+[node name="enemy4" parent="." instance=ExtResource("4_wglf0")]
+position = Vector2(-750, 491)
+
+[node name="enemy5" parent="." instance=ExtResource("4_wglf0")]
+position = Vector2(-497, 503)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4as0u")
+volume_db = -22.046
+pitch_scale = 0.9
+autoplay = true
+parameters/looping = true
+
+[editable path="Player"]
+[editable path="Evidence"]

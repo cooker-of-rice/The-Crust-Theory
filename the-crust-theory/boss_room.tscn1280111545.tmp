@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfm4vmhrghjbk"]
+
+[ext_resource type="Texture2D" uid="uid://d0i3eivt3ur03" path="res://unnamed.jpg" id="1_any6y"]
+[ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_n8ie0"]
+[ext_resource type="AudioStream" uid="uid://buudafdrirbms" path="res://metal_walk.mp3" id="3_m2ex5"]
+[ext_resource type="PackedScene" uid="uid://b7dv7o7dk3ui" path="res://lantern_limit.tscn" id="3_n8ie0"]
+[ext_resource type="PackedScene" uid="uid://cq731bave263a" path="res://enemy.tscn" id="4_chy0o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chy0o"]
+size = Vector2(1356.6406, 44.30456)
+
+[sub_resource type="Gradient" id="Gradient_s7bn3"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 28
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2hac7"]
+gradient = SubResource("Gradient_s7bn3")
+
+[sub_resource type="Curve" id="Curve_s7bn3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2hac7"]
+curve = SubResource("Curve_s7bn3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_chy0o"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(3, 2, 1)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, -20, 0)
+scale_min = 10.09
+scale_max = 10.09
+scale_curve = SubResource("CurveTexture_2hac7")
+color = Color(0.7049588, 0.8690861, 2.3102762e-06, 1)
+color_ramp = SubResource("GradientTexture1D_2hac7")
+
+[node name="boss_room" type="Node2D"]
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(6, -24)
+texture = ExtResource("1_any6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(54.077442, 171.99684)
+scale = Vector2(1.0290933, 1.7152563)
+shape = SubResource("RectangleShape2D_chy0o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-473.29822, -35)
+rotation = -3.1415925
+scale = Vector2(0.040243827, -9.205409)
+shape = SubResource("RectangleShape2D_chy0o")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(647.7087, -35)
+scale = Vector2(0.27583203, 13.609537)
+shape = SubResource("RectangleShape2D_chy0o")
+
+[node name="Player" parent="." instance=ExtResource("2_n8ie0")]
+position = Vector2(140, -173)
+speed = 200.0
+acceleration = 800.0
+friction = 1200.0
+jump_velocity = -350.0
+gravity_multiplier = 0.82
+air_resistance = 200.0
+wall_slide_speed = 100.0
+wall_gravity_multiplier = 0.3
+fire_rate = 0.5
+
+[node name="Camera2D" parent="Player" index="2"]
+zoom = Vector2(2.3, 2.3)
+limit_left = -450
+limit_right = 470
+limit_bottom = 280
+
+[node name="FootstepPlayer" parent="Player" index="4"]
+stream = ExtResource("3_m2ex5")
+
+[node name="lantern_limit" parent="." instance=ExtResource("3_n8ie0")]
+position = Vector2(-231, 16)
+
+[node name="lantern_limit2" parent="." instance=ExtResource("3_n8ie0")]
+position = Vector2(273, 11)
+
+[node name="Enemy" parent="." instance=ExtResource("4_chy0o")]
+position = Vector2(-325, 9)
+scale = Vector2(1, 1.4)
+max_health = 20
+is_boss = true
+
+[node name="AttackParticles" parent="Enemy" index="3"]
+scale = Vector2(42.24, 1)
+process_material = SubResource("ParticleProcessMaterial_chy0o")
+
+[editable path="Player"]
+[editable path="Enemy"]

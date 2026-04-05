@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="The-Crust-Theory-2.0"
-run/main_scene="uid://bft522h4f2ajo"
+run/main_scene="uid://71cxxxbwep7l"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/never/Documents/GitHub/The-Crust-Theory/the-crust-theory/test run.avi"
+movie_writer/disable_vsync=true
+movie_writer/fps=50
 
 [input]
 

@@ -1,63 +1,68 @@
 class_name Interactable
 extends Area2D
 
-# --- 1. SIGNÁLY A PROMĚNNÉ ---
-# Signál, který můžeme použít pro jiné skripty
-signal interacted(player: Node2D)
+# --- VÝBĚR TYPU INTERAKCE ---
+enum InteractType { DIALOG, SCENE_CHANGE }
 
+@export_category("Nastavení Interakce")
+# Toto vytvoří roletku v Inspektoru
+@export var interact_type: InteractType = InteractType.DIALOG 
 @export var prompt_message: String = "Inspect"
 
-# TOTO je ta proměnná, která ti chyběla. 
-# @export_multiline umožní psát delší texty v Inspektoru.
-@export_multiline var dialog_text: String = "Zajímavé... ale co to znamená?"
+@export_group("Pokud je to Dialog")
+@export_multiline var dialog_text: String = "Zde napiš text..."
 
-# Odkaz na vizuální nápovědu (Label nebo Sprite "E")
-@onready var prompt_visual: Node2D = $Prompt 
+@export_group("Pokud jsou to Dveře")
+# Toto ti umožní vyklikat cestu k další scéně přímo v Inspektoru
+@export_file("*.tscn") var next_scene_path: String = ""
 
-# Proměnná pro uložení hráče, když je v dosahu
-var player_in_range: Player = null
+# --- SIGNÁLY A PROMĚNNÉ ---
+signal interacted(player: Node2D)
+var player_in_range: CharacterBody2D = null
 
-# --- 2. ZÁKLADNÍ NASTAVENÍ ---
 func _ready() -> void:
-	# Propojíme signály vstupu a výstupu z oblasti
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	
-	# Na začátku skryjeme nápovědu "E"
-	if prompt_visual:
-		prompt_visual.visible = false
 
-# --- 3. DETEKCE HRÁČE ---
 func _on_body_entered(body: Node2D) -> void:
-	# Kontrola, zda vstoupil Hráč (díky class_name Player)
-	if body is Player:
-		print("Hráč vstoupil do zóny: ", name)
+	# Kontrola, jestli do zóny vešel hráč
+	if body is Player or body.is_in_group("Player"):
 		player_in_range = body
-		if prompt_visual:
-			prompt_visual.visible = true
+		print("Hráč vstoupil do zóny: ", name)
 
 func _on_body_exited(body: Node2D) -> void:
-	# Pokud hráč odešel, zrušíme odkaz a skryjeme nápovědu
 	if body == player_in_range:
-		print("Hráč odešel z zóny: ", name)
 		player_in_range = null
-		if prompt_visual:
-			prompt_visual.visible = false
+		print("Hráč odešel ze zóny: ", name)
 
-# --- 4. ZPRACOVÁNÍ VSTUPU (Tlačítko E) ---
 func _unhandled_input(event: InputEvent) -> void:
-	# Podmínka: Hráč musí být v dosahu A zmáčknout klávesu "interact"
+	# Pokud je hráč v zóně a zmáčkne tlačítko interact (E)
 	if player_in_range and event.is_action_pressed("interact"):
+		
+		# 1. NEJDŘÍV označíme vstup jako vyřízený (dokud dveře ještě existují)
+		get_viewport().set_input_as_handled()
+		
+		# 2. AŽ PAK zavoláme samotnou interakci (změnu scény)
 		interact()
-		get_viewport().set_input_as_handled() # Zabráníme dalšímu zpracování (např. skoku)
 
-# --- 5. LOGIKA INTERAKCE ---
 func interact() -> void:
-	print("!!! INTERAKCE S DŮKAZEM: ", name, " !!!")
+	# --- ROZHODOVACÍ LOGIKA: Co se stane po stisku "E"? ---
 	
-	# Zde voláme UI. Pokud UI scénu ještě nemáš, tento řádek nic neudělá (nezhroutí hru).
-	# Jakmile UI vytvoříš a přidáš do skupiny "UI", začne to fungovat.
-	get_tree().call_group("UI", "show_dialog", dialog_text)
+	if interact_type == InteractType.DIALOG:
+		# 1. VARIANTA: Je to důkaz k prozkoumání
+		print("!!! INTERAKCE S DŮKAZEM: ", name, " !!!")
+		print("TEXT DŮKAZU: ", dialog_text)
+		
+		# Pokud máš už hotové UI pro dialogy, tady bys ho zavolal.
+		# Například: get_tree().call_group("UI", "show_dialog", dialog_text)
+		
+	elif interact_type == InteractType.SCENE_CHANGE:
+		# 2. VARIANTA: Jsou to dveře do dalšího levelu
+		print("!!! PRŮCHOD DVEŘMI !!!")
+		if next_scene_path != "":
+			print("Načítám scénu: ", next_scene_path)
+			get_tree().change_scene_to_file(next_scene_path)
+		else:
+			print("POZOR: Není vybrána žádná další scéna v Inspektoru!")
 	
-	# Emitujeme signál pro případné další použití
 	interacted.emit(player_in_range)
