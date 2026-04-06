@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dovvnmtssnvcl"]
 
 [ext_resource type="Script" uid="uid://bskecujwp2gjn" path="res://interactable.gd" id="1_2ei3o"]
-[ext_resource type="Texture2D" uid="uid://dkrsebyapeheq" path="res://icon.svg" id="2_prx3m"]
+[ext_resource type="Texture2D" uid="uid://dwh0dkishit43" path="res://arrow.png" id="2_bm7ax"]
 [ext_resource type="FontFile" uid="uid://cxcvgtp54ubpt" path="res://Pixeled.ttf" id="3_bm7ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ty8b"]
@@ -18,7 +18,7 @@ shape = SubResource("CircleShape2D_3ty8b")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -2)
 scale = Vector2(0.58203125, 0.56640625)
-texture = ExtResource("2_prx3m")
+texture = ExtResource("2_bm7ax")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -7.0

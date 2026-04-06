@@ -45,6 +45,7 @@ scale = Vector2(0.11999971, -0.079999685)
 texture = ExtResource("2_qxf0c")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+scale = Vector2(0.99999994, 0.99999994)
 amount = 200
 lifetime = 0.26
 process_material = SubResource("ParticleProcessMaterial_a85iw")

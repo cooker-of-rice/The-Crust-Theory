@@ -56,9 +56,13 @@ visible = false
 stream = ExtResource("3_43ocd")
 
 [node name="Evidence" parent="." instance=ExtResource("3_u8nhc")]
-position = Vector2(-283, 69)
+position = Vector2(-244.00003, 69)
+scale = Vector2(0.7, 0.7)
 interact_type = 1
 next_scene_path = "uid://bft522h4f2ajo"
+
+[node name="Sprite2D" parent="Evidence" index="1"]
+rotation = 1.5789553
 
 [node name="DialogUI" type="CanvasLayer" parent="."]
 

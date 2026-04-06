@@ -40,7 +40,6 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_i3pqv")
 projectile_scene = ExtResource("2_hqtel")
-max_health = 1000
 shoot_sound = ExtResource("7_1jxqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -48,6 +47,7 @@ position = Vector2(-5, 0)
 shape = SubResource("CapsuleShape2D_2hs0m")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(1, -4)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_sweqy")

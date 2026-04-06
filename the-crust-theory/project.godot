@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/never/Documents/GitHub/The-Crust-Theory/the-crust-theory/test run.avi"
+movie_writer/movie_file="C:/Users/Uzivatel/Downloads/temp/the-crust-theory/test run.avi"
 movie_writer/disable_vsync=true
-movie_writer/fps=50
+movie_writer/fps=30
 
 [input]
 

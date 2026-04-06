@@ -1,15 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bft522h4f2ajo"]
+[gd_scene load_steps=10 format=3 uid="uid://bft522h4f2ajo"]
 
 [ext_resource type="Script" uid="uid://cwr4ht3dmyowb" path="res://city.gd" id="1_2ygpt"]
 [ext_resource type="PackedScene" uid="uid://cyllnhdsg04ft" path="res://city_base.tscn" id="1_wglf0"]
 [ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_4as0u"]
 [ext_resource type="PackedScene" uid="uid://dovvnmtssnvcl" path="res://Interacteble.tscn" id="3_ky23g"]
-[ext_resource type="PackedScene" uid="uid://6h5eb7bv5hb8" path="res://enemy.tscn" id="4_wglf0"]
+[ext_resource type="PackedScene" uid="uid://6h5eb7bv5hb8" path="res://Enemy.tscn" id="4_wglf0"]
 [ext_resource type="AudioStream" uid="uid://cafu0fq8lfwn4" path="res://brass_frontline.mp3" id="5_4as0u"]
 [ext_resource type="FontFile" uid="uid://cxcvgtp54ubpt" path="res://Pixeled.ttf" id="6_ciawh"]
 [ext_resource type="AudioStream" uid="uid://d1ajqkmb2itur" path="res://slam.mp3" id="7_2ygpt"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wglf0"]
 
 [sub_resource type="FontVariation" id="FontVariation_y2bgq"]
 base_font = ExtResource("6_ciawh")
@@ -32,9 +30,6 @@ visible = false
 position = Vector2(-623, 523)
 interact_type = 1
 next_scene_path = "uid://cfm4vmhrghjbk"
-
-[node name="Sprite2D" parent="Evidence" index="1"]
-texture = SubResource("CompressedTexture2D_wglf0")
 
 [node name="enemy" parent="." groups=["Enemies"] instance=ExtResource("4_wglf0")]
 position = Vector2(-380, 472)

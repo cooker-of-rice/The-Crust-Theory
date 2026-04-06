@@ -10,7 +10,7 @@ size = Vector2(305.25, 199)
 
 [node name="sky" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0)
-scroll_offset = Vector2(-1361.6091, -113)
+scroll_offset = Vector2(-21.60913, -86)
 repeat_size = Vector2(1340, 0)
 repeat_times = 7
 
