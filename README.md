@@ -1,6 +1,8 @@
 **Název projektu:** *The Crust Theory*
 **Autor:** Karel M. Bican a Martin Brož
-**Předmět:** Počítačové hry
+**Předmět:** Počítačové hry <br>
+**Umístění kapitol:** /Documentation/chapters
+
 
 ## Popis projektu
 The Crust Theory je 2D noir plošinovka. Hráč ovládá detektiva v lineárním prostředí města. Hra se zaměřuje na jednoduchý souboj, interakci s předměty a atmosférické vyprávění skrze dialogová okna.
