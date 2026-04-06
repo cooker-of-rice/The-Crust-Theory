@@ -40,6 +40,7 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_i3pqv")
 projectile_scene = ExtResource("2_hqtel")
+max_health = 1000
 shoot_sound = ExtResource("7_1jxqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

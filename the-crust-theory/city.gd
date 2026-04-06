@@ -1,47 +1,53 @@
-extends Node2D # Nebo cokoliv, co je tvůj hlavní uzel levelu
+extends Node2D
 
-@onready var camera: Camera2D = $Camera2D # Odkaz na tvou kameru
-@onready var player: Node2D = $Player   # Odkaz na tvého hráče
+@onready var dialog_text = $DialogUI/Panel/Label
+@onready var dialog_panel = $DialogUI/Panel
+@onready var ambient_sound = $AmbientSound
 
-func _ready() -> void:
-	# Spustíme filmový úvod
-	start_camera_intro()
+var level_cleared: bool = false
 
-func start_camera_intro() -> void:
-	# 1. Zjistíme finální pozici (kde stojí hráč)
-	var final_pos = player.global_position
+func _process(_delta: float) -> void:
+	# Kontrolujeme, zda už jsme sekvenci nespustili a zda jsou všichni mrtví
+	if not level_cleared:
+		var enemies = get_tree().get_nodes_in_group("Enemies")
+		if enemies.size() == 0:
+			level_cleared = true
+			start_outro_sequence()
+
+func start_outro_sequence():
+	# Malá pauza po zabití posledního, aby to nebylo hned
+	await get_tree().create_timer(1.5).timeout
 	
-	# 2. Nastavíme startovní pozici kamery (daleko vpravo)
-	# Přidáme k X souřadnici hráče třeba 800 pixelů
-	var start_pos = final_pos + Vector2(800, 0)
-	camera.global_position = start_pos
+	# 1. RÁNA
+	if ambient_sound:
+		ambient_sound.play()
 	
-	# 3. Odpojíme kameru od hráče (pokud je uvnitř jeho uzlu)
-	# To je klíčové, aby Tween mohl kamerou hýbat nezávisle na pohybu hráče
-	var original_parent = camera.get_parent()
-	if original_parent == player:
-		# Dočasně ji přesuneme do hlavního levelu
-		camera.reparent(get_tree().current_scene)
+	var camera = get_viewport().get_camera_2d()
+	if camera and camera.has_method("add_trauma"):
+		camera.add_trauma(0.8) # Silnější rána než v kanclu
 	
-	# 4. Vytvoříme Tween pro plynulý pohyb ("připlutí")
+	# 2. DIALOG
+	show_dialog("TA RÁNA... PRISLO TO PRIMO ODSUD, Z KANÁLU.")
+	await get_tree().create_timer(3.0).timeout
+	
+	show_dialog("NENÍ CESTY ZPET. MUSÍM TAM VLÉZT A UKONCIT TO.")
+	await get_tree().create_timer(3.5).timeout
+	
+	dialog_panel.hide()
+	
+	# 3. PŘECHOD DO DALŠÍHO LEVELU
+	# Tady změníš scénu na tu se stokami/bossem
+	await get_tree().create_timer(1.0).timeout
+	get_tree().change_scene_to_file("res://sewer_level.tscn")
+
+func show_dialog(text: String):
+	dialog_panel.show()
+	dialog_text.text = text
+	
+	# Resetujeme měřítko a vycentrujeme (Fix z minula)
+	dialog_text.scale = Vector2(1, 1)
+	dialog_text.custom_minimum_size.x = dialog_panel.size.x - 40
+	
+	dialog_panel.modulate.a = 0
 	var tween = create_tween()
-	
-	# Nastavíme typ pohybu (EASING) pro filmový efekt:
-	# TRANS_CUBIC = plynulý rozjezd i dojezd
-	# EASE_OUT = zpomalení na konci (nejlepší pro přílet)
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_ease(Tween.EASE_OUT)
-	
-	# 5. Spustíme pohyb:
-	# Změň 'global_position' na 'final_pos' během 2.5 vteřiny
-	tween.tween_property(camera, "global_position", final_pos, 2.5)
-	
-	# 6. Co se stane, když Tween skončí:
-	# Připojíme kameru zpět k hráči, aby ho sledovala při chůzi
-	if original_parent == player:
-		# Použijeme lambda funkci, která se zavolá po skončení Tweenu
-		tween.finished.connect(func():
-			camera.reparent(player)
-			# Vyresetujeme lokální pozici, aby byla vycentrovaná na hráči
-			camera.position = Vector2.ZERO 
-			print("Kamera ustálena na Millerovi!")
+	tween.tween_property(dialog_panel, "modulate:a", 1.0, 0.3)

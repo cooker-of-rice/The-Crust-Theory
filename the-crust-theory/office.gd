@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func start_intro_sequence():
 	# 1. Nuda v kanclu
-	show_dialog("Další noc, kdy se nic neděje. Tohle město pomalu chcípá.")
+	show_dialog("DALSÍ NOC, KDY SE NIC NEDEJE. TOHLE MESTO POMALU CHCÍPÁ.")
 	await get_tree().create_timer(3.0).timeout
 	
 	# 2. RÁNA (Vybouření klanu)
@@ -31,7 +31,7 @@ func start_intro_sequence():
 		camera.add_trauma(0.6)
 	
 	# 3. Reakce na ránu
-	show_dialog("Co to sakra bylo?! Šlo to z venku. Musím to jít prověřit.")
+	show_dialog("CO TO SAKRA BYLO?! SLO TO Z VENKU. MUSÍM TO JÍT PROVERIT.")
 	await get_tree().create_timer(3.0).timeout
 	
 	dialog_panel.hide()

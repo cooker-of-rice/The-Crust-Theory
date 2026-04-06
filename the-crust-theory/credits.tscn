@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt6noijawce0w"]
+
+[ext_resource type="Script" uid="uid://dntjlw3lyvpnv" path="res://credits.gd" id="1_nm7lk"]
+[ext_resource type="FontFile" uid="uid://cxcvgtp54ubpt" path="res://Pixeled.ttf" id="2_c1t8d"]
+[ext_resource type="AudioStream" uid="uid://3c2ox23f8ywa" path="res://the_claw_of_the_harbor.mp3" id="3_g4wvt"]
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nm7lk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2000, 2000)
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 700.0
+offset_top = 619.0
+offset_right = 1330.0
+offset_bottom = 703.0
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 30
+text = "GRATULACE DOHRÁL JSI TO"
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g4wvt")
+volume_db = -0.4
+autoplay = true
+parameters/looping = true

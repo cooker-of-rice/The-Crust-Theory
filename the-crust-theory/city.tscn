@@ -1,14 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://bft522h4f2ajo"]
+[gd_scene load_steps=11 format=3 uid="uid://bft522h4f2ajo"]
 
+[ext_resource type="Script" uid="uid://cwr4ht3dmyowb" path="res://city.gd" id="1_2ygpt"]
 [ext_resource type="PackedScene" uid="uid://cyllnhdsg04ft" path="res://city_base.tscn" id="1_wglf0"]
 [ext_resource type="PackedScene" uid="uid://c5mlguvicthaa" path="res://player.tscn" id="2_4as0u"]
 [ext_resource type="PackedScene" uid="uid://dovvnmtssnvcl" path="res://Interacteble.tscn" id="3_ky23g"]
 [ext_resource type="PackedScene" uid="uid://6h5eb7bv5hb8" path="res://enemy.tscn" id="4_wglf0"]
 [ext_resource type="AudioStream" uid="uid://cafu0fq8lfwn4" path="res://brass_frontline.mp3" id="5_4as0u"]
+[ext_resource type="FontFile" uid="uid://cxcvgtp54ubpt" path="res://Pixeled.ttf" id="6_ciawh"]
+[ext_resource type="AudioStream" uid="uid://d1ajqkmb2itur" path="res://slam.mp3" id="7_2ygpt"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wglf0"]
 
+[sub_resource type="FontVariation" id="FontVariation_y2bgq"]
+base_font = ExtResource("6_ciawh")
+
 [node name="alpha world" type="Node2D"]
+script = ExtResource("1_2ygpt")
 
 [node name="Background_City" parent="." instance=ExtResource("1_wglf0")]
 z_index = -115
@@ -29,19 +36,19 @@ next_scene_path = "uid://cfm4vmhrghjbk"
 [node name="Sprite2D" parent="Evidence" index="1"]
 texture = SubResource("CompressedTexture2D_wglf0")
 
-[node name="enemy" parent="." instance=ExtResource("4_wglf0")]
+[node name="enemy" parent="." groups=["Enemies"] instance=ExtResource("4_wglf0")]
 position = Vector2(-380, 472)
 
-[node name="enemy2" parent="." instance=ExtResource("4_wglf0")]
+[node name="enemy2" parent="." groups=["Enemies"] instance=ExtResource("4_wglf0")]
 position = Vector2(-292, 527)
 
-[node name="enemy3" parent="." instance=ExtResource("4_wglf0")]
+[node name="enemy3" parent="." groups=["Enemies"] instance=ExtResource("4_wglf0")]
 position = Vector2(-380, 472)
 
-[node name="enemy4" parent="." instance=ExtResource("4_wglf0")]
+[node name="enemy4" parent="." groups=["Enemies"] instance=ExtResource("4_wglf0")]
 position = Vector2(-750, 491)
 
-[node name="enemy5" parent="." instance=ExtResource("4_wglf0")]
+[node name="enemy5" parent="." groups=["Enemies"] instance=ExtResource("4_wglf0")]
 position = Vector2(-497, 503)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -50,6 +57,35 @@ volume_db = -22.046
 pitch_scale = 0.9
 autoplay = true
 parameters/looping = true
+
+[node name="DialogUI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="DialogUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -648.0
+offset_right = -536.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="DialogUI/Panel"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 100.0
+theme_override_fonts/font = SubResource("FontVariation_y2bgq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AmbientSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2ygpt")
+
+[node name="DialogTimer" type="Timer" parent="."]
 
 [editable path="Player"]
 [editable path="Evidence"]

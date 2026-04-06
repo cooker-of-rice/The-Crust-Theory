@@ -74,6 +74,8 @@ collision_layer = 4
 collision_mask = 3
 safe_margin = 2.0
 script = ExtResource("1_s7bn3")
+speed = 75.0
+max_health = 20
 slam_sound = ExtResource("5_o1i15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

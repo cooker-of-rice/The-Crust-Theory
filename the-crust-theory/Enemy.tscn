@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://6h5eb7bv5hb8"]
+[gd_scene load_steps=12 format=3 uid="uid://6h5eb7bv5hb8"]
 
 [ext_resource type="Script" uid="uid://c58m5ps7ym1c" path="res://enemy.gd" id="1_s7bn3"]
-[ext_resource type="Texture2D" uid="uid://cdq26jvl0wxxc" path="res://smack.png" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://bdch0d7r36rfq" path="res://smack1.png" id="2_iifgy"]
+[ext_resource type="Texture2D" uid="uid://ekoqxbxk1gx6" path="res://smack2.png" id="3_epg4t"]
 [ext_resource type="Texture2D" uid="uid://erht7lwd063b" path="res://still.png" id="3_iifgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7xaro"]
@@ -40,7 +41,10 @@ color_ramp = SubResource("GradientTexture1D_2hac7")
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_qi2p4")
+"texture": ExtResource("2_iifgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_epg4t")
 }],
 "loop": true,
 "name": &"attack",
@@ -58,9 +62,9 @@ animations = [{
 [node name="enemy" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_s7bn3")
-speed = 130.0
-detection_range = 1100.0
-attack_range = 100.0
+speed = 150.0
+detection_range = 1350.0
+attack_range = 90.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.8400002, 1)
@@ -80,7 +84,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qi2p4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -11)
-scale = Vector2(0.6, 0.44)
+position = Vector2(2, -17)
+scale = Vector2(0.3188172, 0.229)
 sprite_frames = SubResource("SpriteFrames_7k104")
-animation = &"idle"
+animation = &"attack"

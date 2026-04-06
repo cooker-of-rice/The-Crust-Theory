@@ -129,11 +129,37 @@ func take_damage(amount):
 	if current_health <= 0: die()
 
 func die():
-	current_state = State.DEAD
-	var music = get_tree().current_scene.get_node_or_null("BossMusic")
-	if music:
-		var tween = create_tween()
-		tween.tween_property(music, "volume_db", -80.0, 2.0)
-		tween.finished.connect(music.stop)
+	# 1. OKAMŽITÁ DEAKTIVACE (Zamezí útokům a pohybu)
+	current_state = State.DEAD  # Zastaví start_boss_loop
+	set_physics_process(false) # Zastaví pohyb a gravitaci
+	set_process(false)         # Zastaví všechny ostatní výpočty
 	
-	queue_free()
+	# Zamezíme tomu, aby do něj hráč dál střílel (vypneme kolize)
+	collision_layer = 0
+	collision_mask = 0
+	
+	# 2. VIZUÁLNÍ KONEC
+	# Pokud chceš, aby zmizel hned:
+	sprite.hide() 
+	# Pokud máš ty částice (smrtící prach), teď je ten čas je pustit:
+	if attack_particles:
+		attack_particles.restart() 
+
+	# 3. VYTVOŘENÍ ČERNÉ OBRAZOVKY (FADE)
+	var fade_layer = CanvasLayer.new()
+	get_tree().current_scene.add_child(fade_layer)
+	
+	var fade_rect = ColorRect.new()
+	fade_rect.color = Color(0, 0, 0, 0)
+	fade_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	fade_layer.add_child(fade_rect)
+	
+	# 4. PROCES STMÍVÁNÍ (5 SEKUND)
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "color:a", 1.0, 5.0)
+	
+	print("Konec kultu. Miller odchází do tmy.")
+	
+	# 5. ČEKÁNÍ A PŘEPNUTÍ
+	await tween.finished
+	get_tree().change_scene_to_file("res://credits.tscn")
