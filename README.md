@@ -2,22 +2,30 @@
 **Autor:** Karel M. Bican a Martin Brož
 **Předmět:** Počítačové hry
 
-### **Popis projektu**
+## Popis projektu
+The Crust Theory je 2D noir plošinovka. Hráč ovládá detektiva v lineárním prostředí města. Hra se zaměřuje na jednoduchý souboj, interakci s předměty a atmosférické vyprávění skrze dialogová okna.
 
-*The Crust Theory* je 2D noirová metroidvania, odehrávající se v rozpadajícím se městě zmítaném konspiracemi a okultními experimenty.
-Hráč ovládá detektiva, který se snaží proniknout do uzavřené sekty a odhalit pravdu o jejich ideologii.
-Hra stojí na atmosféře, průzkumu prostředí a pomalém budování napětí, nikoliv na akčních scénách.
+---
 
-### **Cíl projektu**
+## Cíl projektu
+Vytvořit funkční prototyp obsahující:
+* **Základní pohyb:** Chůze, skok, dash a wall-jump.
+* **Soubojový systém:** Střelba z pistole se zpětným rázem, systém poškození a knockback nepřátel.
+* **Interakce:** Detekce blízkosti objektů, dialogový systém.
+* **Nepřátelé:** Základní AI kultisty (detekce hráče, útok na blízko) a skriptovaný souboj s bossem.
 
-Vytvořit hratelný prototyp, který prezentuje:
+---
 
-* základní mechaniky (pohyb, souboj, interakce, prozkoumávání),
-* noir estetiku a práci se světlem,
-
-### **Technologie**
-
-* **Engine:** Godot 4
+## Technické specifikace
+* **Engine:** Godot 4.5
 * **Jazyk:** GDScript
-* **Grafika:** 2D stylizace s nízkým kontrastem, pixel art
+* **Grafika:** Pixel art, 2D sprity, práce se základním osvětlením a CanvasLayers pro UI.
+* **Struktura:** Rozdělení na scény (kancelář, ulice, boss room) s přechody mezi nimi.
 
+---
+
+## Současný stav implementace
+* Funkční hráč s fyzikou a combat handlem.
+* Nepřátelé s animovanými stavy (Idle, Attack, Take Damage).
+* Boss s logikou střídání útoků (Rush, Smash) a sekvencí ukončení hry.
+* UI pro dialogy a černé stmívání obrazovky před titulky.
