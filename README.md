@@ -1,5 +1,5 @@
 **Název projektu:** *The Crust Theory*
-**Autor:** Karel M. Bican a Martin Brož
+**Autor:** Karel M. Bican
 **Předmět:** Počítačové hry <br>
 **Umístění kapitol:** /Documentation/chapters
 
